@@ -1,0 +1,17 @@
+#!/bin/sh
+BKPDIR=`date +"%Y-%m-%d"`
+BKPPREFIX=`date +"%Y-%m-%d_%H-%M-%S_"`
+targetdir="$HOME/backups/$BKPDIR"
+echo "making $targetdir"
+mkdir -p $targetdir
+
+if [[ "" != "$1"  ]]; then
+	if [ -d "$1" ]; then
+		zip -r "$targetdir/$BKPPREFIX`basename $1`.bkp.zip" "$1"
+	else
+		echo "copy $1 to $targetdir/$BKPPREFIX`basename $1`.bkp"
+		cp $1 $targetdir/$BKPPREFIX`basename $1`.bkp
+	fi
+else
+	echo "Usage: bkp <[file]|[dir]>"
+fi
