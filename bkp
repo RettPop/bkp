@@ -5,7 +5,7 @@ targetdir="$HOME/backups/$BKPDIR"
 echo "making $targetdir"
 mkdir -p $targetdir
 
-if [[ "" != "$1"  ]]; then
+if [ "" != "$1"  ]; then
 	if [ -d "$1" ]; then
 		zip -r "$targetdir/$BKPPREFIX`basename $1`.bkp.zip" "$1"
 	else
